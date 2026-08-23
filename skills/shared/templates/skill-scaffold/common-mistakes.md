@@ -39,5 +39,5 @@ For mistakes that need no more than a line each.
 
 ## Sources
 
-- <https://owasp.org/...>
-- <https://cwe.mitre.org/data/definitions/nnn.html>
+- `https://owasp.org/<project-page>`
+- `https://cwe.mitre.org/data/definitions/<id>.html`

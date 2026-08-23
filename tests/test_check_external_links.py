@@ -48,6 +48,55 @@ class ExternalLinkCheckerTests(unittest.TestCase):
             },
         )
 
+    def test_extract_urls_ignores_inline_code_placeholders(self):
+        with tempfile.TemporaryDirectory() as temp:
+            root = Path(temp)
+            (root / "README.md").write_text(
+                "Issuer `https://token.actions.githubusercontent.com` and "
+                "`https://cwe.mitre.org/data/definitions/<id>.html` are illustrative.\n"
+                "Real link: https://example.com/real\n",
+                encoding="utf-8",
+            )
+            sources = self.checker.extract_urls_with_sources(root)
+
+        self.assertEqual(sources, {"https://example.com/real": ["README.md"]})
+
+    def test_head_404_falls_back_to_get_before_declaring_broken(self):
+        calls: list[str] = []
+
+        class Response:
+            status = 200
+
+            def __enter__(self):
+                return self
+
+            def __exit__(self, *exc):
+                return False
+
+        def fake_open(request, timeout):
+            calls.append(request.get_method())
+            if request.get_method() == "HEAD":
+                raise self.checker.HTTPError(request.full_url, 404, "Not Found", {}, None)
+            return Response()
+
+        with patch.object(self.checker, "build_opener") as opener:
+            opener.return_value.open = fake_open
+            result = self.checker.classify("https://head-hostile.example/doc.pdf", timeout=1, retries=0)
+
+        self.assertEqual(calls, ["HEAD", "GET"])
+        self.assertEqual(result["state"], "healthy")
+
+    def test_url_broken_for_both_methods_is_reported_broken(self):
+        def fake_open(request, timeout):
+            raise self.checker.HTTPError(request.full_url, 404, "Not Found", {}, None)
+
+        with patch.object(self.checker, "build_opener") as opener:
+            opener.return_value.open = fake_open
+            result = self.checker.classify("https://gone.example/page", timeout=1, retries=0)
+
+        self.assertEqual(result["state"], "broken")
+        self.assertEqual(result["status"], 404)
+
     def test_private_and_loopback_targets_are_rejected(self):
         for url in (
             "http://127.0.0.1/",

@@ -1,7 +1,7 @@
 # SLSA v1.2 and Sigstore
 
 > SLSA v1.2, status Approved. Verified 2026-07-28 against <https://slsa.dev/spec/v1.2/> and
-> <https://slsa.dev/spec/v1.2/levels>. v1.1 is marked Retired.
+> <https://slsa.dev/spec/v1.2/build-track-basics>. v1.1 is marked Retired.
 >
 > Sigstore cosign flags verified 2026-07-28 against
 > <https://docs.sigstore.dev/cosign/verifying/verify/> and
@@ -143,7 +143,7 @@ Enterprise Server.
 ## Sources
 
 - <https://slsa.dev/spec/v1.2/>
-- <https://slsa.dev/spec/v1.2/levels>
+- <https://slsa.dev/spec/v1.2/build-track-basics>
 - <https://docs.sigstore.dev/cosign/signing/signing_with_containers/>
 - <https://docs.sigstore.dev/cosign/verifying/verify/>
 - <https://docs.sigstore.dev/quickstart/verification-cheat-sheet/>

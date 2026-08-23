@@ -16,7 +16,7 @@ The registry points readers to:
 - EEA EthTrust Security Levels Specification, whose first published version incorporated the
   registry's vulnerability material. See <https://entethalliance.org/specs/>
 - Smart Contract Security Verification Standard (SCSVS), a broader development and verification
-  guideline. See <https://scs.owasp.org/standards/smart-contract-security-verification-standard/>
+  guideline. See <https://scs.owasp.org/SCSVS/>
 
 The appropriate current classification depends on the report's required taxonomy. Do not invent
 an SWC number when the current source cannot be verified.

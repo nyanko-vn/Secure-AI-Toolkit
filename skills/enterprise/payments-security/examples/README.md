@@ -173,7 +173,7 @@ export default {
     'process.env.STRIPE_KEY': JSON.stringify(process.env.STRIPE_SECRET_KEY),
   }
 }
-// => bundle.js: stripe.charges.create({..., key: "sk_live_abc123"})
+// => bundle.js: stripe.charges.create({..., key: "sk_live_EXAMPLE_NOT_A_REAL_KEY"})
 ```
 
 Fixed:

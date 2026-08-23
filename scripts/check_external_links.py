@@ -25,8 +25,16 @@ from urllib.request import HTTPRedirectHandler, Request, build_opener
 
 ROOT = Path(__file__).resolve().parents[1]
 URL_RE = re.compile(r"https?://[^\s<>)\]}`\"']+", re.IGNORECASE)
+FENCED_CODE_RE = re.compile(r"```.*?```", re.DOTALL)
+# Inline code spans hold illustrative values, not navigable links: OIDC issuer identifiers,
+# `<id>`-style templates, and placeholder repository paths. Checking them produces 404s that
+# no documentation edit can fix.
+INLINE_CODE_RE = re.compile(r"`[^`\n]*`")
 USER_AGENT = "Secure-AI-Toolkit-link-checker/1.0"
 REPORT_SCHEMA = 1
+# Some hosts (NIST nvlpubs, doi.org, parts of csrc.nist.gov) answer HEAD with 404 while serving
+# the document over GET. Retry with GET on these codes instead of trusting the HEAD verdict.
+HEAD_RETRY_CODES = {403, 404, 405, 410, 501}
 
 
 class SafeRedirect(HTTPRedirectHandler):
@@ -53,7 +61,9 @@ def extract_urls_with_sources(root: Path | None = None) -> dict[str, list[str]]:
     base = root or ROOT
     found: dict[str, set[str]] = {}
     for path in markdown_files(base):
-        prose = re.sub(r"```.*?```", "", path.read_text(encoding="utf-8"), flags=re.DOTALL)
+        prose = path.read_text(encoding="utf-8")
+        prose = FENCED_CODE_RE.sub("", prose)
+        prose = INLINE_CODE_RE.sub("", prose)
         for match in URL_RE.findall(prose):
             url = match.rstrip(".,;:")
             rel = str(path.relative_to(base)).replace("\\", "/")
@@ -113,7 +123,7 @@ def classify(url: str, timeout: float, retries: int) -> dict[str, Any]:
                         return {"url": url, "state": "healthy", "status": status}
                     last = f"HTTP {status}"
             except HTTPError as exc:
-                if method == "HEAD" and exc.code in {405, 501}:
+                if method == "HEAD" and exc.code in HEAD_RETRY_CODES:
                     continue
                 if exc.code in {404, 410}:
                     return {"url": url, "state": "broken", "status": exc.code}

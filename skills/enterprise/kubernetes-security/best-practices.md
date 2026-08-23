@@ -516,7 +516,7 @@ Kubelet configuration, and the CNI; YAML cannot prove those.
 
 - <https://kubernetes.io/docs/concepts/security/pod-security-standards/>
 - <https://kubernetes.io/docs/concepts/security/pod-security-admission/>
-- <https://kubernetes.io/docs/reference/access-authn-authz/rbac-good-practices/>
+- <https://kubernetes.io/docs/concepts/security/rbac-good-practices/>
 - <https://kubernetes.io/docs/concepts/services-networking/network-policies/>
 - <https://kubernetes.io/docs/concepts/security/secrets-good-practices/>
 - <https://kubernetes.io/docs/tasks/debug/debug-cluster/audit/>

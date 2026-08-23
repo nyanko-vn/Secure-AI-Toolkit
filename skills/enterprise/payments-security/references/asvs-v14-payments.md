@@ -1,6 +1,6 @@
 Reference: ASVS 5.0.0 (Application Security Verification Standard)
 Chapters used: V3, V4, V11, V12, V14
-Source: https://asvs.readthedocs.io/en/latest/index.html
+Source: https://owasp.org/www-project-application-security-verification-standard/
 Date verified: 2026-07-30
 
 V3: Session Management - idempotency tokens should not be reusable across intents.

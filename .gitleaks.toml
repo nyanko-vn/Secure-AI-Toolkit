@@ -43,6 +43,12 @@ regexTarget = "match"
 regexes = ['''sk_live_placeholder''']
 
 [[allowlists]]
+description = "Retired shortened Stripe placeholder in payments-security frontend-bundle Vulnerable block"
+paths = ['''skills/enterprise/payments-security/examples/README\.md''']
+regexTarget = "match"
+regexes = ['''sk_live_abc123''']
+
+[[allowlists]]
 description = "Synthetic API_KEY in owasp common-mistakes Vulnerable block"
 paths = ['''skills/core/owasp/common-mistakes\.md''']
 regexTarget = "match"

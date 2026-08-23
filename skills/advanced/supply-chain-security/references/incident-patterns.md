@@ -10,12 +10,13 @@ file.
 ## A patch release that adds a dependency - `event-stream`
 
 Source: <https://github.com/advisories/GHSA-mh6f-8j2x-4483> ·
-<https://github.com/advisories/GHSA-52w4-pxx8-4xj4>
+<https://github.com/advisories/GHSA-9x64-5r7x-2q53>
 
 `event-stream` 3.3.6 added `flatmap-stream` as a dependency. `flatmap-stream` is malicious in
-its entirety - the advisory marks all versions affected, with no patched version and removal as
-the only remediation. GitHub assigned no CVE; the identifiers are GHSA-mh6f-8j2x-4483 for
-`event-stream` and CWE-506, CVSS 9.8. Remediation was 3.3.4, the last clean release, or 4.0.0.
+its entirety - the joint advisory marks every version affected, with no patched version and
+removal as the only remediation. GitHub assigned no CVE; the identifiers are
+GHSA-mh6f-8j2x-4483 covering both packages and GHSA-9x64-5r7x-2q53 for `flatmap-stream` 0.1.1
+alone, both CWE-506, CVSS 9.8. Remediation was 3.3.4, the last clean release, or 4.0.0.
 
 Mechanism: the malicious code was not in the package that everyone depended on. It arrived as a
 new transitive dependency introduced by a version bump of a package with millions of weekly

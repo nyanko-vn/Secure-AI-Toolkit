@@ -1,7 +1,7 @@
 # OWASP AISVS 1.0 Reference
 
 Source: <https://github.com/OWASP/AISVS>
-Project page: <https://owasp.org/www-project-artificial-intelligence-security-verification-standard/>
+Project page: <https://owasp.org/www-project-artificial-intelligence-security-verification-standard-aisvs-docs/>
 Version: 1.0. No explicit calendar release date is published on the source; do not invent one.
 Verified: 2026-07-30, against `github.com/OWASP/AISVS`.
 

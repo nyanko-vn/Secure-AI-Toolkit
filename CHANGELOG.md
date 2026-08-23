@@ -4,6 +4,15 @@ Notable changes to this repository. Format follows [Keep a Changelog](https://ke
 
 ## [Unreleased]
 
+## [1.4.4] - 2026-08-23
+
+### Fixed
+
+- Replaced a credential-shaped vulnerable-example value with an explicitly inert placeholder so
+  secret scanning distinguishes the security lesson from a possible credential.
+- Repaired external documentation references across the skills and corrected the advisory link
+  monitor to ignore inline-code examples and retry a GET request when a host rejects HEAD.
+
 ## [1.4.3] - 2026-08-01
 
 ### Changed

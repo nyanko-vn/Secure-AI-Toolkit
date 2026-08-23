@@ -1,6 +1,6 @@
 Reference: PCI DSS v4.0
 Category: Secure cardholder data storage, transmission, and scope reduction
-Source: https://docs.paymentcardIndustry.com/pci-dss/requirements/4
+Source: https://www.pcisecuritystandards.org/document_library/
 Date verified: 2026-07-30
 
 Top-level requirement mapping:

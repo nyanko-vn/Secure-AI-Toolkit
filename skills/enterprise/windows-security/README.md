@@ -135,7 +135,7 @@ and stop passing secrets on command lines.
 - CIS Benchmarks - <https://www.cisecurity.org/cis-benchmarks>
 - Microsoft Security Compliance Toolkit -
   <https://learn.microsoft.com/en-us/windows/security/operating-system-security/device-management/windows-security-configuration-framework/security-compliance-toolkit-10>
-- Windows Server security documentation - <https://learn.microsoft.com/en-us/windows-server/security/>
+- Windows Server security documentation - <https://learn.microsoft.com/en-us/windows-server/security/security-and-assurance>
 - Credential Guard - <https://learn.microsoft.com/en-us/windows/security/identity-protection/credential-guard/>
 - Just Enough Administration - <https://learn.microsoft.com/en-us/powershell/scripting/security/remoting/jea/overview>
 - ASP.NET Core Data Protection -
